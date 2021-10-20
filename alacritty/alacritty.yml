@@ -111,10 +111,12 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Anonymous Pro Minus
+    #family: Anonymous Pro Minus
+    #family: Sarasa Mono SC Nerd
+    family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Ragular
 
   # Bold font face
   bold:
@@ -122,10 +124,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Anonymous Pro Minus
+    family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Ragular
 
   # Italic font face
   italic:
@@ -133,10 +135,10 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Anonymous Pro Minus
+    family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
-    style: Italic Bold
+    style: Italic
 
   # Bold italic font face
   bold_italic:
@@ -144,10 +146,10 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Anonymous Pro Minus
+    family: Cascadia Code
 
     # The `style` can be specified to pick a specific face.
-    style: Italic Bold
+    style: Italic
 
   # Point size
   size: 11.0
