@@ -10,8 +10,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Sarasa Mono SC Nerd:size=12" };
-static const char dmenufont[]       = "Sarasa Mono SC Nerd:size=12";
+static const char *fonts[]          = { "Sarasa Mono SC Nerd:size=13" };
+static const char dmenufont[]       = "Sarasa Mono SC Nerd:size=13";
 static const char col_gray1[]       = "#1D2330";
 static const char col_gray2[]       = "#4B5665";
 static const char col_gray3[]       = "#AD69AF";
@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "\uf303", "\uf489", "\uf488", "\ue217" };
+static const char *tags[] = { "\uf30d", "\uf268", "\ue217" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -71,7 +71,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -83,9 +83,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = volup } },
 	{ MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = voldown } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
