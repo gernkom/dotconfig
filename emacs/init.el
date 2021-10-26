@@ -59,3 +59,6 @@
   :diminish
   :init (add-hook 'after-init-hook 'yas-global-mode))
 (use-package yasnippet-snippets)
+
+(use-package rust-mode)
+
