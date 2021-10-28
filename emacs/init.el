@@ -62,3 +62,9 @@
 
 (use-package rust-mode)
 
+(use-package rainbow-delimiters
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+(use-package highlight-parentheses
+  :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
+
+(set-frame-font "Cascadia Code-9" nil t)
