@@ -4,6 +4,11 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (save-place-mode 1)
+(setq scroll-step 1
+      scroll-margin 10
+      hscroll-step 1
+      hscroll-margin 10
+      scroll-preserve-screen-position 'always)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -60,7 +65,23 @@
   :init (add-hook 'after-init-hook 'yas-global-mode))
 (use-package yasnippet-snippets)
 
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+	 (rust-mode . lsp-deferred)
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp lsp-deferred))
+
 (use-package rust-mode)
+(use-package cargo
+  :ensure t
+  :hook (rust-mode . cargo-minor-mode))
+
+(use-package flycheck
+  :init (global-flycheck-mode))
+(use-package flycheck-rust
+  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package rainbow-delimiters
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
