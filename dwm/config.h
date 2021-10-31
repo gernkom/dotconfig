@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "\uf30d", "\uf268", "\ue217" };
+static const char *tags[] = { "\uf30d", "\ue779", "\uf269", "\ue217" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,7 +49,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -66,12 +66,14 @@ static const char *roficmd[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *volup[] = { "amixer", "set", "Master", "5%+", "umute", NULL };
 static const char *voldown[] = { "amixer", "set", "Master", "5%-", "umute", NULL };
+static const char *firecmd[] = { "firefox", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = firecmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
