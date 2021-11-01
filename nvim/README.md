@@ -1,6 +1,6 @@
 # Neovim 配置文件
 
-![效果图](https://github.com/gernkom/init.vim/blob/master/screenshots/with%20rust.png)
+![效果图](../screenshots/with%20rust.png)
 
 # 配置说明
 
