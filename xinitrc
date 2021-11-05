@@ -33,6 +33,23 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # For dwm
+download_speed()
+{
+    download_speed=`ifstat | grep enp5s0 | awk -F' ' '{print $6}'`
+    re='^[0-9]+$'
+    if ! [[ $download_speed =~ $re ]] ; then
+	download_speed=${download_speed%?}
+	download_speed=`awk 'BEGIN{printf "%.2fM/s\n", '$download_speed' / 1024}'`
+    else
+	download_speed=`awk 'BEGIN{printf "%.2fK/s\n", '$download_speed' / 1024}'`
+    fi
+    echo $download_speed
+}
+while true; do
+    xsetroot -name "Net: $(download_speed)"
+    sleep 1
+done &
+
 fcitx5 &
 dunst &
 flameshot &
