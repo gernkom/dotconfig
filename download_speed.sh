@@ -16,6 +16,6 @@ download_speed()
 }
 
 while true; do
-    xsetroot -name "\uf300: $(download_speed)"
+    xsetroot -name "Download Speed: $(download_speed)"
     sleep 1
 done
