@@ -25,7 +25,12 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "\uf30c", "\uf269", "\ue217" };
+/* Nerd Font
+   f303       Arch Logo
+   f30c       FreeBSD Logo
+   f30d       Gentoo Logo
+*/
+static const char *tags[] = { "\uf303", "\uf269", "\ue217" };
 
 static const Rule rules[] = {
 	/* xprop(1):
