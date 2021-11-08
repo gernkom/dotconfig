@@ -9,6 +9,12 @@
       hscroll-step 1
       hscroll-margin 10
       scroll-preserve-screen-position 'always)
+(setq column-number-mode t)
+(setq-default display-fill-column-indicator-column 79)
+(global-display-fill-column-indicator-mode)
+
+(setq url-proxy-services '(("http" . "127.0.0.1:7890")
+			   ("https" . "127.0.0.1:7890")))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -28,9 +34,12 @@
   (setq use-package-verbose t))
 (require 'use-package)
 (use-package all-the-icons)
-(use-package monokai-theme
+(use-package nord-theme
   :init
-  (load-theme 'monokai t))
+  (load-theme 'nord t))
+;; (use-package monokai-theme
+;;   :init
+;;   (load-theme 'monokai t))
 (use-package emacs
   :config
   (setq display-line-numbers-type 'relative)
@@ -65,27 +74,28 @@
   :init (add-hook 'after-init-hook 'yas-global-mode))
 (use-package yasnippet-snippets)
 
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (
-	 (rust-mode . lsp-deferred)
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred))
-
 (use-package rust-mode)
 (use-package cargo
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
-
-(use-package flycheck
-  :init (global-flycheck-mode))
-(use-package flycheck-rust
-  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package rainbow-delimiters
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 (use-package highlight-parentheses
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
 
-(set-frame-font "Cascadia Code-9" nil t)
+;; (set-frame-font "JetBrainsMono Nerd Font-9" nil t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(highlight-parentheses rainbow-delimiters cargo rust-mode yasnippet-snippets yasnippet company which-key monokai-theme all-the-icons use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
