@@ -32,28 +32,46 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+export http_proxy="127.0.0.1:7890"
+export https_proxy=$http_proxy
+
 # For dwm
 download_speed()
 {
-    download_speed=`ifstat | grep enp5s0 | awk -F' ' '{print $6}'`
-    re='^[0-9]+$'
-    if ! [[ $download_speed =~ $re ]] ; then
-	download_speed=${download_speed%?}
-	download_speed=`awk 'BEGIN{printf "%.2fM/s\n", '$download_speed' / 1024}'`
+    # 网卡接口
+    eth=enp6s0
+
+    pre_rx=$(cat /proc/net/dev | grep $eth | awk -F' ' '{print $2}')
+    sleep 1
+    rx=$(cat /proc/net/dev | grep $eth | awk -F' ' '{print $2}')
+    rx=$((${rx} - ${pre_rx}))
+
+    if [[ $rx -lt 1024 ]]; then
+	rx="${rx}B/s"
+    elif [[ $rx -gt 1048576 ]]; then
+	rx=`awk 'BEGIN{printf "%.2fM/s", '$rx' / 1048576}'`
     else
-	download_speed=`awk 'BEGIN{printf "%.2fK/s\n", '$download_speed' / 1024}'`
+	rx=`awk 'BEGIN{printf "%.2fK/s", '$rx' / 1024}'`
     fi
-    echo $download_speed
+
+    echo $rx
 }
+
+
 while true; do
-    xsetroot -name "Net: $(download_speed)"
+    xsetroot -name "$(download_speed)"
     sleep 1
 done &
 
+picom &
 fcitx5 &
 dunst &
 flameshot &
 telegram-desktop &
-feh --bg-fill /home/gk/Pictures/wallhaven-q2ogyr.png
+feh --bg-fill /home/gk/Pictures/bg.png
 
 exec dwm
