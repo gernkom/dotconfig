@@ -10,11 +10,8 @@
       hscroll-margin 10
       scroll-preserve-screen-position 'always)
 (setq column-number-mode t)
-(setq-default display-fill-column-indicator-column 79)
+(setq-default display-fill-column-indicator-column 80)
 (global-display-fill-column-indicator-mode)
-
-(setq url-proxy-services '(("http" . "127.0.0.1:7890")
-			   ("https" . "127.0.0.1:7890")))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -34,12 +31,9 @@
   (setq use-package-verbose t))
 (require 'use-package)
 (use-package all-the-icons)
-(use-package nord-theme
+(use-package monokai-theme
   :init
-  (load-theme 'nord t))
-;; (use-package monokai-theme
-;;   :init
-;;   (load-theme 'monokai t))
+  (load-theme 'monokai t))
 (use-package emacs
   :config
   (setq display-line-numbers-type 'relative)
@@ -83,5 +77,3 @@
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 (use-package highlight-parentheses
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
-
-;; (set-frame-font "JetBrainsMono Nerd Font-9" nil t)
