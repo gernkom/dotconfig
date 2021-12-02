@@ -40,9 +40,18 @@ export http_proxy="127.0.0.1:7890"
 export https_proxy=$http_proxy
 
 # For dwm
+today()
+{
+    echo $(date '+%Y %b %d (%a) %I:%M %p')
+}
+
+vol()
+{
+    echo $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))
+}
+
 download_speed()
 {
-    # 网卡接口
     eth=enp6s0
 
     pre_rx=$(cat /proc/net/dev | grep $eth | awk -F' ' '{print $2}')
@@ -63,11 +72,9 @@ download_speed()
 
 
 while true; do
-    xsetroot -name "$(download_speed)"
-    sleep 1
+    xsetroot -name "$(download_speed) <->  $(vol) <->   $(today)"
 done &
 
-picom &
 fcitx5 &
 dunst &
 flameshot &
