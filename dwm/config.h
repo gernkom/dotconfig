@@ -15,9 +15,9 @@ static const char *fonts[]          = { "Sarasa Mono SC Nerd:size=13" };
 static const char dmenufont[]       = "Sarasa Mono SC Nerd:size=13";
 static const char col_gray1[]       = "#1D2330";
 static const char col_gray2[]       = "#4B5665";
-static const char col_gray3[]       = "#AD69AF";
+static const char col_gray3[]       = "#54478A";
 static const char col_gray4[]       = "#D1D7E1";
-static const char col_cyan[]        = "#84598D";
+static const char col_cyan[]        = "#463C65";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
