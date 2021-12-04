@@ -50,6 +50,11 @@ vol()
     echo $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))
 }
 
+local_proxy_port()
+{
+    echo $(echo $http_proxy | awk -F':' '{print $2}')
+}
+
 download_speed()
 {
     eth=enp6s0
@@ -72,13 +77,15 @@ download_speed()
 
 
 while true; do
-    xsetroot -name "$(download_speed) <->  $(vol) <->   $(today)"
+    xsetroot -name "$(download_speed) |   $(local_proxy_port) |  $(vol) |   $(today)"
 done &
 
 fcitx5 &
 dunst &
 flameshot &
 telegram-desktop &
+blueman-applet &
 feh --bg-fill /home/gk/Pictures/bg.png
+picom &
 
 exec dwm
