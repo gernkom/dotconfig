@@ -40,6 +40,11 @@ export http_proxy="127.0.0.1:7890"
 export https_proxy=$http_proxy
 
 # For dwm
+cpu_usage()
+{
+    echo $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
+}
+
 today()
 {
     echo $(date '+%Y %b %d (%a) %I:%M %p')
@@ -77,7 +82,7 @@ download_speed()
 
 
 while true; do
-    xsetroot -name "$(download_speed) |   $(local_proxy_port) |  $(vol) |   $(today)"
+    xsetroot -name "$(download_speed) |   $(cpu_usage) |   $(local_proxy_port) |  $(vol) |   $(today)"
 done &
 
 fcitx5 &
