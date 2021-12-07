@@ -29,7 +29,7 @@ static const char *colors[][3]      = {
    f30c       FreeBSD Logo
    f30d       Gentoo Logo
 */
-static const char *tags[] = { "\uf303", "\uf269", "\ue217" };
+static const char *tags[] = { "\uf303", "\uf269", "\ue217", "\uf1f8" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -37,8 +37,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Chromium", NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Chromium", NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Telegram", NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
