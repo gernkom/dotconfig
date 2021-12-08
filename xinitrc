@@ -80,11 +80,11 @@ download_speed()
     echo $rx
 }
 
-
 while true; do
     xsetroot -name "$(download_speed) |   $(cpu_usage) |   $(local_proxy_port) |  $(vol) |   $(today)"
 done &
 
+xset r rate 200 30
 fcitx5 &
 dunst &
 flameshot &
