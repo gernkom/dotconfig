@@ -84,7 +84,7 @@ while true; do
     xsetroot -name "$(download_speed) |   $(cpu_usage) |   $(local_proxy_port) |  $(vol) |   $(today)"
 done &
 
-xset r rate 200 30
+xset r rate 300 30
 fcitx5 &
 dunst &
 flameshot &
