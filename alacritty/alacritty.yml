@@ -45,8 +45,6 @@ colors:
     white:   '0xBEBEC1'
   indexed_colors: []
 
-background_opacity: 0.9
-
 cursor:
   style:
     #   - ▇ Block
