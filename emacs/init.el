@@ -4,6 +4,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (save-place-mode 1)
+(mouse-wheel-mode -1)
 (setq scroll-step 1
       scroll-margin 10
       hscroll-step 1
@@ -12,6 +13,9 @@
 (setq column-number-mode t)
 (setq-default display-fill-column-indicator-column 80)
 (global-display-fill-column-indicator-mode)
+
+(setq url-proxy-services '(("http"  . "127.0.0.1:7890")
+			   ("https" . "127.0.0.1:7890")))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -77,3 +81,13 @@
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 (use-package highlight-parentheses
   :init (add-hook 'prog-mode-hook 'highlight-parentheses-mode))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(defun gk-flycheck-c-setup ()
+  (setq flycheck-clang-language-standard "gnu11"))
+(add-hook 'c-mode-hook #'gk-flycheck-c-setup)
+
+(set-frame-font "Cascadia Code-9" nil t)
