@@ -14,9 +14,6 @@
 (setq-default display-fill-column-indicator-column 80)
 (global-display-fill-column-indicator-mode)
 
-(setq url-proxy-services '(("http"  . "127.0.0.1:7890")
-			   ("https" . "127.0.0.1:7890")))
-
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (unless (bound-and-true-p package--initialized)
@@ -91,3 +88,24 @@
 (add-hook 'c-mode-hook #'gk-flycheck-c-setup)
 
 (set-frame-font "Cascadia Code-9" nil t)
+
+(defun gk-search (query-url prompt)
+  "Open the search url constructed with the QUERY-URL.
+PROMPT sets the `read-string prompt."
+  (browse-url
+   (concat query-url
+	   (url-hexify-string
+	    (if mark-active
+		(buffer-substring (region-beginning) (region-end))
+	      (read-string prompt))))))
+
+(defmacro gk-install-search-engine (search-engine-name search-engine-url search-engine-prompt)
+  "Given some information regarding a search engine, install the interactive command to search through them"
+  `(defun ,(intern (format "gk-%s" search-engine-name)) ()
+     ,(format "Search %s with a query or region if any." search-engine-name)
+     (interactive)
+     (gk-search ,search-engine-url ,search-engine-prompt)))
+
+(gk-install-search-engine "google"  "https://www.google.com/search?q="              "Google: ")
+(gk-install-search-engine "youtube" "https://www.youtube.com/results?search_query=" "Search YouTube: ")
+(gk-install-search-engine "github"  "https://github.com/search?q="                  "Search GitHub: ")
