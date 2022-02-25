@@ -73,6 +73,6 @@ dunst &
 flameshot &
 telegram-desktop &
 feh --bg-fill /home/gk/Pictures/bg.png
-/home/gk/.config/xob/pulse-volume-watcher.py | xob &
+/home/gk/.config/xob/pulse-volume-watcher.py | xob -t 2000 &
 
 exec dwm
