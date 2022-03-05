@@ -1,10 +1,8 @@
 #!/bin/sh
-
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 
 # merge in defaults and keymaps
-
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
@@ -13,12 +11,12 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-# start some nice programs
+# some system configure
+xset r rate 300 30
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-
 export http_proxy="127.0.0.1:7890"
 export https_proxy=$http_proxy
 
@@ -30,17 +28,12 @@ cpu_usage()
 
 today()
 {
-    echo $(date '+%Y %b %d (%a) %I:%M %p')
+    echo $(date '+%Y %B %d %I:%M %p')
 }
 
 vol()
 {
     echo $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))
-}
-
-local_proxy_port()
-{
-    echo $(echo $http_proxy | awk -F':' '{print $2}')
 }
 
 download_speed()
@@ -64,15 +57,13 @@ download_speed()
 }
 
 while true; do
-    xsetroot -name "$(download_speed) |   $(cpu_usage) |   $(local_proxy_port) |  $(vol) |   $(today)"
+    xsetroot -name "网络下行: $(download_speed) | 处理器占用: $(cpu_usage) | 音量: $(vol) | $(today)"
 done &
 
-xset r rate 300 30
+# start some nice programs
+feh --bg-fill /home/gk/Pictures/bg.jpg
+/home/gk/.config/xob/pulse-volume-watcher.py | xob -t 2000 &
 fcitx5 &
 dunst &
-flameshot &
-telegram-desktop &
-feh --bg-fill /home/gk/Pictures/bg.png
-/home/gk/.config/xob/pulse-volume-watcher.py | xob -t 2000 &
 
 exec dwm
