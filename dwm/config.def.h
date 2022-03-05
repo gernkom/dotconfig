@@ -9,10 +9,10 @@ static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corne
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Sarasa Mono SC Nerd:size=13" };
-static const char dmenufont[]       = "Sarasa Mono SC Nerd:size=13";
+static const int showbar            = 1;     /* 0 means no bar */
+static const int topbar             = 1;     /* 0 means bottom bar */
+static const char *fonts[]          = { "Sarasa Term SC:size=15" };
+static const char dmenufont[]       = "Sarasa Term SC:size=15";
 static const char col_gray1[]       = "#1D2330";
 static const char col_gray2[]       = "#4B5665";
 static const char col_gray3[]       = "#54478A";
@@ -25,12 +25,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-/* Nerd Font
-   f303       Arch Logo
-   f30c       FreeBSD Logo
-   f30d       Gentoo Logo
-*/
-static const char *tags[] = { "\uf303", "\uf268", "\ue217", "\uf1f8" };
+static const char *tags[] = { "甲", "乙", "丙" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,7 +34,6 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Chromium", NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Telegram", NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
@@ -47,11 +41,12 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "浮动",     tile },    /* first entry is default */
+	{ "平铺",     NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
@@ -86,8 +81,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = volup } },
-	{ MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = voldown } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -100,6 +93,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = volup } },
+	{ MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = voldown } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -116,8 +111,8 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
@@ -128,3 +123,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
