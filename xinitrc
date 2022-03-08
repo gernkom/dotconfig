@@ -28,7 +28,7 @@ cpu_usage()
 
 today()
 {
-    echo $(date '+%Y %B %d %I:%M %p')
+    echo $(date '+%B %d %I:%M %p')
 }
 
 vol()
@@ -38,7 +38,7 @@ vol()
 
 download_speed()
 {
-    eth=enp5s0
+    eth=
 
     pre_rx=$(cat /proc/net/dev | grep $eth | awk -F' ' '{print $2}')
     sleep 1
