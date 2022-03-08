@@ -36,6 +36,7 @@ static const Rule rules[] = {
 	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Telegram", NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "mpv",      NULL,       NULL,       0,            1,           -1 },
+	{ "Emacs",    "emacs",    NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -46,8 +47,8 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "浮动",     tile },    /* first entry is default */
-	{ "平铺",     NULL },    /* no layout function means floating behavior */
+	{ "平铺",     tile },    /* first entry is default */
+	{ "浮动",     NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
