@@ -14,7 +14,7 @@
     horizontal_padding = 10
     frame_width = 0
     sort = no
-    font = Sarasa Mono SC Nerd
+    font = Sarasa Term SC
     line_height = 3
     markup = full
     format = "<b>%s</b>\n%b"
